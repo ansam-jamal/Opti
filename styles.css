@@ -1,0 +1,687 @@
+:root {
+      --navy-blue: #102043;
+      --dark-blue: #172c57;
+      --light-blue: #e0e8d0;
+      --accent-color: #e81515;
+      --text-light: #ffffff;
+      --water-color: #4b6baa6b;
+    }
+
+    /* Import Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+    /* Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+/* جميع الأزرار ستستخدم Times New Roman */
+.btn,
+.card-btn,
+.glasses-btn,
+.face-shape-btn,
+.back-to-shapes,
+.back-to-analysis,
+#startBtn,
+#try-glasses-btn,
+#analyze-btn,
+#browse-btn,
+#back-to-shapes-btn,
+.slider-arrow,
+.mobile-menu-btn {
+  font-family: 'Times New Roman', Times, serif !important;
+  /* الخطوط الأخرى مثل الحجم، اللون، إلخ تبقى كما هي */
+}
+    body {
+       font-family: 'Times New Roman', Times, serif;
+      background-color: var(--navy-blue);
+      color: var(--text-light);
+      line-height: 1.6;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(circle at 10% 20%, var(--water-color) 0%, transparent 50%),
+        radial-gradient(circle at 60% 50%, var(--water-color) 0%, transparent 50%);
+      background-size: 200% 200%;
+      animation: waterEffect 15s ease infinite;
+    }
+
+    @keyframes waterEffect {
+      0% {
+        background-position: 0% 0%;
+      }
+
+      50% {
+        background-position: 100% 100%;
+      }
+
+      100% {
+        background-position: 0% 0%;
+      }
+    }
+
+    .nav-link i {
+      margin-right: 5px;
+      font-size: 1.3rem;
+      vertical-align: middle;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+.title,
+#gallery-title,
+h3 {
+  color:var(--accent-color);
+}
+
+    /* Navbar Styles */
+    /* تنسيقات Navbar الأساسية */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--dark-blue);
+  color: white;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  
+}
+
+.logo {
+   font-family: 'Times New Roman', Times, serif;
+  font-size: 1.8rem;
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* تنسيقات روابط التنقل */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-link {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 1.3rem;
+  transition: color 0.3s;
+  position: relative;
+}
+ .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 5px;
+      width: 0;
+      height: 0px;
+      background-color: var(--accent-color);
+      transition: width 0.3s ease;
+    }
+/* تأثير الظل عند التمرير */
+.nav-link:hover {
+    background-color: var(--navy-blue);
+    padding-left: 2.5rem;
+}
+ .nav-link:hover::after {
+      width: 100%;
+    }
+
+/* الخط الأبيض بين العناصر (لشاشات الكبيرة فقط) */
+@media (min-width: 768px) {
+  .nav-links li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -0.75rem;
+    top: 0%;
+    transform: translateY(-50%);
+    height: 50%;
+    width: 2px;
+    color: var(--text-light);
+   background-color: var(--dark-blue);
+  }
+}
+
+/* تنسيقات القائمة المتنقلة للشاشات الصغيرة */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* الخط الأحمر المتحرك للقائمة المتنقلة */
+/* ----------------------------------------
+   1. الشاشات الكبيرة (768px فما فوق)
+   ---------------------------------------- */
+
+@media (min-width: 768px) {
+  .nav-link {
+    position: relative;
+    display: inline-block; /* مهم لتحديد العرض بدقة */
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 10px 15px;
+    z-index: 1; /* يجعل النص في طبقة أعلى من العناصر الخلفية */
+  }
+
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 5px; /* المسافة من أسفل النص */
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+    z-index: -1; /* يجعل الخط تحت النص */
+  }
+
+  .nav-link:hover::before {
+    width: 100%;
+  }
+
+  /* إزالة الخلفية عند التحويم */
+  .nav-link:hover {
+    background-color: transparent;
+  }
+}
+  
+
+@media (max-width: 767px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  /* تأثير الخط الأحمر في الجوال (تحت النص) */
+  .nav-link {
+    position: relative;
+    display: block;
+    padding: 1.2rem 2rem;
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 1.3rem;
+    transition: all 0.3s;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 2rem;
+    bottom: 1px; /* مسافة من تحت النص */
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: calc(100% - 4rem); /* يبدأ من 2rem وينتهي قبل 2rem */
+  }
+
+  /* الحفاظ على الخلفية عند التحويم في الجوال */
+  .nav-link:hover {
+    background-color: var(--navy-blue); /* نحافظ على هذا التأثير فقط في الجوال */
+    color: white;
+  }
+
+  /* فصل العناصر بخط أفقي */
+  .nav-links li {
+    border-bottom: 2px solid var(--text-light);
+  }
+
+  /* تأثير انفتاح القائمة (إن وُجد) */
+  .nav-links.active {
+    clip-path: circle(1000px at 90% -10%);
+    background-color: var(--dark-blue);
+  }
+}
+    /* Video Section */
+    .video-container {
+      width: 93%;
+      height: 65vh;
+      overflow: hidden;
+      position: relative;
+      margin: 0 auto;
+      border-radius: 15px;
+      /* اختياري - لإضافة زوايا مدورة */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      /* اختياري - لإضافة ظل */
+    }
+
+    #feature-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.4);
+      color: white;
+      text-align: center;
+    }
+
+    .video-overlay h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+      animation: fadeIn 1.5s ease-in-out;
+      opacity: 0.9;
+      letter-spacing: 1px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 0.9;
+        transform: translateY(0);
+      }
+    }
+
+    /* Cards Section */
+    .cards-container {
+      display: flex;
+      justify-content: space-around;
+      padding: 5rem 2rem;
+      gap: 2rem;
+      background-color: transparent;
+
+    }
+
+    .card {
+      background-color: #345390;
+      border-radius: 15px;
+      padding: 2.5rem;
+      width: 30%;
+      text-align: center;
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s;
+      backdrop-filter: blur(10px);
+      border: 3px solid rgba(255, 255, 255, 0.322);
+
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      background-color: rgba(25, 54, 87, 0.963);
+    }
+
+    .card h3 {
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      color: var(--text-light);
+    }
+
+    .card p {
+      margin-bottom: 2rem;
+      font-size: 1rem;
+      line-height: 1.6;
+      opacity: 0.75;
+      font-weight: 100;
+    }
+
+    .card-btn {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      white-space: nowrap;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+
+    .card-btn:hover {
+      background-color: #c0392b;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Gallery Sections */
+    #glasses-gallery,
+    #face-shapes-section,
+    #about-section,
+    #contact-section {
+      display: none;
+      padding: 5rem 2rem;
+      background-color: var(--dark-blue);
+      color: var(--text-light);
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 3rem;
+
+    }
+
+    .gallery-header h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--accent-color);
+    }
+
+    .gallery-header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .back-to-shapes {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      padding: 0.8rem 1.5rem;
+      background-color: var(--navy-blue);
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      
+    }
+
+    .back-to-shapes:hover {
+      background-color: var(--light-blue);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+   .glasses-container,
+.face-shapes-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 أعمدة افتراضيًا */
+  gap: 2rem;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+     /* ظل خفيف */
+}
+@media (max-width: 1024px) {
+  .glasses-container,
+  .face-shapes-container {
+    grid-template-columns: repeat(2, 1fr); /* شاشات متوسطة */
+  }
+}
+
+@media (max-width: 600px) {
+  .glasses-container,
+  .face-shapes-container {
+    grid-template-columns: 1fr; /* شاشة الجوال */
+  }
+}
+
+
+    .glasses-card,
+    .face-shape-card {
+      background-color:#4b6baa6b; /* خلفية شفافة قليلاً */
+      border: 8px solid #102043;   /* إطار خفيف */
+      border-radius: 15px;                          /* زوايا مدورة */
+      box-shadow: 0 8px 20px #102043;  
+      overflow: hidden;
+      transition: all 0.3s;
+      text-align: center;
+      backdrop-filter: blur(5px);
+    }
+
+    .glasses-card:hover,
+    .face-shape-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .glasses-slider {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      background-color: #fff;
+      overflow: hidden;
+    }
+
+    .glasses-slides {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .glasses-slide {
+      min-width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .glasses-slide img {
+      max-width: 70%;
+      max-height: 80%;
+      object-fit: contain;
+    }
+
+    .face-shape-image {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      background-color: #fff;
+    }
+
+    .slider-controls {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .slider-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .slider-dot.active {
+      background-color: var(--accent-color);
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: background-color 0.3s;
+    }
+
+    .slider-arrow:hover {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .slider-arrow.prev {
+      left: 10px;
+    }
+
+    .slider-arrow.next {
+      right: 10px;
+    }
+
+    .glasses-info,
+    .face-shape-info {
+      padding: 1.5rem;
+    }
+
+    .glasses-info h3,
+    .face-shape-info h3 {
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
+
+    .glasses-btn,
+    .face-shape-btn {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      font-weight: 500;
+    }
+
+    .glasses-btn:hover,
+    .face-shape-btn:hover {
+      background-color: #c0392b;
+      transform: translatey(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* About & Contact Sections */
+    #about-section,
+    #contact-section {
+      text-align: center;
+    }
+
+    #about-section h2,
+    #contact-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      font-weight: bold;
+      color: var(--accent-color);
+
+    }
+
+    #about-section p {
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .contact-icon {
+      font-size: 1.5rem;
+      color: var(--accent-color);
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1001;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+      }
+
+      .video-overlay h1 {
+        font-size: 2.5rem;
+      }
+
+      .cards-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 3rem 1rem;
+        margin-top: 60px;
+      }
+
+      .card {
+        width: 90%;
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .glasses-container,
+      .face-shapes-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+
+      #glasses-gallery,
+      #face-shapes-section,
+      #about-section,
+      #contact-section {
+        padding: 3rem 1rem;
+        margin-top: 60px;
+      }
+    }
