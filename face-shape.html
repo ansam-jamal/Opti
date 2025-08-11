@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Opti Style - Face Shape Analysis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <!-- Desktop Navbar (Only on large screens) -->
+  <nav id="desktop-navbar" class="navbar">
+    <a href="#" class="logo">Opti Style</a>
+    <ul class="nav-links">
+      <a href="#" class="nav-link" data-target="home">
+        <i class="fas fa-house-chimney-window fa-shake" style="--fa-animation-duration: 3s; color: #fc5219;"></i> Home
+      </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link" data-target="about">
+          <i class="fas fa-circle-info" style="--fa-animation-duration: 20s; color: #FFD166;"></i> About
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link" data-target="contact">
+          <i class="fas fa-paper-plane fa-beat" style="--fa-animation-duration: 2s; color: #06D6A0;"></i> Contact
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Mobile Header (Only on small screens) -->
+  <header id="mobile-header" class="mobile-header">
+    <a href="#" class="logo">Opti Style</a>
+    <button class="mobile-menu-btn" id="mobile-menu-btn">
+      <i class="fas fa-bars"></i>
+    </button>
+  </header>
+
+  <!-- Mobile Dropdown Menu (Slides from top) -->
+  <div id="mobile-menu" class="mobile-menu">
+    <ul class="mobile-nav-links">
+      <li><a href="#" class="nav-link" data-target="home"> <i class="fas fa-house-chimney-window fa-shake"
+            style="--fa-animation-duration: 3s; color: #fc5219;"></i>Home</a></li>
+      <li><a href="#" class="nav-link" data-target="about"><i class="fas fa-circle-info"
+            style="--fa-animation-duration: 20s; color: #FFD166;"></i>About</a></li>
+      <li><a href="#" class="nav-link" data-target="contact"><i class="fas fa-paper-plane fa-beat"
+            style="--fa-animation-duration: 2s; color: #06D6A0;"></i>Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Welcome Modal -->
+  <div id="welcomeModal">
+    <div class="modal-content">
+      <h2>Welcome to Face Shape Analysis</h2>
+      <div class="form-group">
+        <label for="welcomeGender">Gender</label>
+        <select id="welcomeGender" required>
+          <option value="">Select</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+        <div id="genderError" class="error-message">Please select your gender</div>
+      </div>
+      <div class="form-group">
+        <label for="welcomeAge">Age</label>
+        <input type="number" id="welcomeAge" min="1" max="120" required placeholder="Enter your age">
+        <div id="ageError" class="error-message">Please enter your age</div>
+      </div>
+      <button id="startAppBtn" class="btn">Continue</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Camera Section -->
+    <div class="camera-section">
+      <div class="video-wrapper">
+        <video id="video" autoplay playsinline></video>
+      </div>
+      <div class="controls">
+        <button id="startBtn" class="btn" onclick="startCapture()">Start Classification</button>
+
+        <!-- Loading Spinner (Circular) -->
+        <div class="loading-container" id="loadingContainer" style="display: none;">
+          <div class="circular-progress">
+            <div class="progress-circle" id="progressCircle"></div>
+          </div>
+          <div class="face-shape-result" id="faceShapeResult"></div>
+        </div>
+
+        <!-- زر إعادة التشغيل هنا -->
+        <button id="restartBtn" class="btn restart-btn" onclick="restartClassification()" style="display: none;">
+          <i class="fas fa-redo"></i> Restart Classification
+        </button>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <section id="resultsSection" class="results-section">
+      <div class="results-header">
+        <h2 id="faceShapeTitle">Your Face Shape</h2>
+        <p id="recommendationText">We've selected glasses that will complement your face shape.</p>
+      </div>
+      <div class="glasses-container" id="glassesGrid">
+        <!-- Glasses cards will be inserted here by JavaScript -->
+      </div>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>

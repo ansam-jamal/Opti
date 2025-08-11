@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Opti Style</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+  <style>
+
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- رابط ملف CSS الخاص بك -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="#" class="logo">Opti Style</a>
+    <button class="mobile-menu-btn" id="mobile-menu-btn">
+      <i class="fas fa-bars"></i>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li>
+        <a href="#" class="nav-link" data-target="home">
+          <i class="fas fa-house-chimney-window fa-shake" style="--fa-animation-duration: 3s; color: #fc5219;"></i> Home
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link" data-target="about">
+          <i class="fas fa-circle-info" style="--fa-animation-duration: 20s; color: #FFD166;"></i> About
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link" data-target="contact">
+          <i class="fas fa-paper-plane fa-beat" style="--fa-animation-duration: 2s; color: #06D6A0;"></i> Contact
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Home Section -->
+  <div id="home">
+    <!-- Video Section -->
+    <div class="video-container">
+      <video autoplay muted loop id="feature-video">
+        <source src="video/vid.mp4" type="video/mp4">
+      </video>
+      <div class="video-overlay">
+        <h1>Welcome to Opti Style</h1>
+      </div>
+    </div>
+    <!-- Cards Section -->
+    <div class="cards-container">
+      <div class="card">
+        <h3>Try All Glasses</h3>
+        <p>Explore our complete collection of frames and virtually try them on using your camera</p>
+        <button class="card-btn" id="try-glasses-btn">Start Exploring</button>
+      </div>
+      <div class="card">
+        <h3>Face Shape Analysis</h3>
+        <p>AI-powered frame recommendations tailored to your face shape</p>
+        <button class="card-btn" id="analyze-btn">Analyze Now</button>
+      </div>
+      <div class="card">
+        <h3>View by Face Shape</h3>
+        <p>Select your face shape to see our curated collection of recommended frames</p>
+        <button class="card-btn" id="browse-btn">Browse</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Glasses Gallery Section -->
+  <section id="glasses-gallery">
+    <div class="gallery-header">
+      <a href="#" class="back-to-shapes" id="back-to-shapes-btn">
+        <i class="fas fa-arrow-left"></i> Back to Face Shapes
+      </a>
+      <h2 id="gallery-title">Our Glasses Collection</h2>
+      <p>Select any frame to try it on virtually</p>
+    </div>
+    <div class="glasses-container" id="glasses-grid">
+      <!-- Glasses cards will be inserted here by JavaScript -->
+    </div>
+  </section>
+
+  <!-- Face Shapes Section -->
+  <section id="face-shapes-section">
+    <div class="gallery-header">
+      <h2>Select Your Face Shape</h2>
+      <p>Choose your face shape to see recommended frames</p>
+    </div>
+    <div class="face-shapes-container" id="face-shapes-grid">
+      <!-- Face shape cards will be inserted here by JavaScript -->
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about-section">
+    <h2>About Opti Style</h2>
+    <p>Opti Style revolutionizes how you find your perfect glasses. Our advanced facial recognition technology analyzes
+      over 100 facial features to determine your unique face shape.</p>
+    <p>Based on scientific research in facial aesthetics and eyewear design, we recommend frames that complement your
+      face shape, enhance your features, and match your personal style.</p>
+    <p>Whether you're looking for everyday glasses, sunglasses, or special occasion frames, Opti Style helps you make
+      confident choices with virtual try-on technology.</p>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact-section">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      <div class="contact-item">
+        <i class="fas fa-phone contact-icon"></i>
+        <span>+1 (555) 123-4567</span>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-envelope contact-icon"></i>
+        <span>info@opticstyle.com</span>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-map-marker-alt contact-icon"></i>
+        <span>123 Fashion Ave, Style City, SC 10001</span>
+      </div>
+    </div>
+  </section>
+
+  
+    <script src="scripts.js"></script>
+  
+</body>
+
+</html>
