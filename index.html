@@ -5,134 +5,865 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Opti Style</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-  <style>
-
-  </style>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- رابط ملف CSS الخاص بك -->
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --navy-blue: #102043;
+      --dark-blue: #172c57;
+      --light-blue: #e0e8d0;
+      --accent-color: #e81515;
+      --text-light: #ffffff;
+      --water-color: #4b6baa6b;
+    }
+
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      background-color: var(--navy-blue);
+      color: var(--text-light);
+      line-height: 1.6;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(circle at 10% 20%, var(--water-color) 0%, transparent 50%),
+        radial-gradient(circle at 60% 50%, var(--water-color) 0%, transparent 50%);
+      background-size: 200% 200%;
+      animation: waterEffect 15s ease infinite;
+    }
+
+    @keyframes waterEffect {
+      0% {
+        background-position: 0% 0%;
+      }
+
+      50% {
+        background-position: 100% 100%;
+      }
+
+      100% {
+        background-position: 0% 0%;
+      }
+    }
+
+    .nav-link i {
+      margin-right: 5px;
+      font-size: 1.3rem;
+      vertical-align: middle;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .title,
+    #gallery-title,
+    h3 {
+      color: var(--accent-color);
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      background-color: var(--dark-blue) !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 1.8rem;
+      color: var(--text-light) !important;
+      font-weight: bold;
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--text-light) !important;
+      font-size: 1.3rem;
+      position: relative;
+      padding: 0.5rem 1rem;
+      transition: all 0.3s;
+    }
+
+    .navbar-nav .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 1rem;
+      bottom: 5px;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent-color);
+      transition: width 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover::after {
+      width: calc(100% - 2rem);
+    }
+
+    @media (min-width: 992px) {
+      .navbar-nav .nav-item:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 50%;
+        width: 2px;
+        background-color: var(--text-light);
+        opacity: 0.5;
+      }
+    }
+
+    @media (max-width: 991.98px) {
+      .navbar-nav .nav-link {
+        padding: 1rem 1.5rem;
+      }
+      
+      .navbar-nav .nav-link::after {
+        left: 1.5rem;
+        bottom: 10px;
+      }
+      
+      .navbar-nav .nav-link:hover::after {
+        width: calc(100% - 3rem);
+      }
+    }
+
+    /* Video Section */
+    .video-container {
+      width: 93%;
+      height: 65vh;
+      overflow: hidden;
+      position: relative;
+      margin: 0 auto;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    #feature-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.4);
+      color: white;
+      text-align: center;
+    }
+
+    .video-overlay h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+      animation: fadeIn 1.5s ease-in-out;
+      opacity: 0.9;
+      letter-spacing: 1px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 0.9;
+        transform: translateY(0);
+      }
+    }
+
+    /* Cards Section */
+    .card-custom {
+      background-color: #345390;
+      border-radius: 15px;
+      padding: 2.5rem;
+      text-align: center;
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s;
+      backdrop-filter: blur(10px);
+      border: 3px solid rgba(255, 255, 255, 0.322);
+      height: 100%;
+    }
+
+    .card-custom:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      background-color: rgba(25, 54, 87, 0.963);
+    }
+
+    .card-custom h3 {
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      color: var(--text-light);
+    }
+
+    .card-custom p {
+      margin-bottom: 2rem;
+      font-size: 1rem;
+      line-height: 1.6;
+      opacity: 0.75;
+      font-weight: 100;
+    }
+
+    .card-btn {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      white-space: nowrap;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      font-family: 'Times New Roman', Times, serif !important;
+    }
+
+    .card-btn:hover {
+      background-color: #c0392b;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Gallery Sections */
+    .section-content {
+      padding: 5rem 2rem;
+      background-color: var(--dark-blue);
+      color: var(--text-light);
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .gallery-header h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--accent-color);
+    }
+
+    .gallery-header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .back-to-shapes {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      padding: 0.8rem 1.5rem;
+      background-color: var(--navy-blue);
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      font-family: 'Times New Roman', Times, serif !important;
+    }
+
+    .back-to-shapes:hover {
+      background-color: var(--light-blue);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .glasses-card,
+    .face-shape-card {
+      background-color: #4b6baa6b;
+      border: 8px solid #102043;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px #102043;
+      overflow: hidden;
+      transition: all 0.3s;
+      text-align: center;
+      backdrop-filter: blur(5px);
+      height: 100%;
+    }
+
+    .glasses-card:hover,
+    .face-shape-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .glasses-slider {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      background-color: #fff;
+      overflow: hidden;
+    }
+
+    .glasses-slides {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .glasses-slide {
+      min-width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .glasses-slide img {
+      max-width: 70%;
+      max-height: 80%;
+      object-fit: contain;
+    }
+
+    .face-shape-image {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      background-color: #fff;
+    }
+
+    .slider-controls {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .slider-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .slider-dot.active {
+      background-color: var(--accent-color);
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: background-color 0.3s;
+      font-family: 'Times New Roman', Times, serif !important;
+    }
+
+    .slider-arrow:hover {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .slider-arrow.prev {
+      left: 10px;
+    }
+
+    .slider-arrow.next {
+      right: 10px;
+    }
+
+    .glasses-info,
+    .face-shape-info {
+      padding: 1.5rem;
+    }
+
+    .glasses-info h3,
+    .face-shape-info h3 {
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
+
+    .glasses-btn,
+    .face-shape-btn {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      font-weight: 500;
+      font-family: 'Times New Roman', Times, serif !important;
+    }
+
+    .glasses-btn:hover,
+    .face-shape-btn:hover {
+      background-color: #c0392b;
+      transform: translatey(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* About & Contact Sections */
+    .section-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      font-weight: bold;
+      color: var(--accent-color);
+    }
+
+    .section-content p {
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .contact-icon {
+      font-size: 1.5rem;
+      color: var(--accent-color);
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .video-overlay h1 {
+        font-size: 2.5rem;
+      }
+      
+      .section-content {
+        padding: 3rem 1rem;
+        margin-top: 76px;
+      }
+    }
+  </style>
 </head>
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar">
-    <a href="#" class="logo">Opti Style</a>
-    <button class="mobile-menu-btn" id="mobile-menu-btn">
-      <i class="fas fa-bars"></i>
-    </button>
-    <ul class="nav-links" id="nav-links">
-      <li>
-        <a href="#" class="nav-link" data-target="home">
-          <i class="fas fa-house-chimney-window fa-shake" style="--fa-animation-duration: 3s; color: #fc5219;"></i> Home
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link" data-target="about">
-          <i class="fas fa-circle-info" style="--fa-animation-duration: 20s; color: #FFD166;"></i> About
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link" data-target="contact">
-          <i class="fas fa-paper-plane fa-beat" style="--fa-animation-duration: 2s; color: #06D6A0;"></i> Contact
-        </a>
-      </li>
-    </ul>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Opti Style</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-target="home">
+              <i class="fas fa-house-chimney-window fa-shake" style="--fa-animation-duration: 3s; color: #fc5219;"></i> Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-target="about">
+              <i class="fas fa-circle-info" style="--fa-animation-duration: 20s; color: #FFD166;"></i> About
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-target="contact">
+              <i class="fas fa-paper-plane fa-beat" style="--fa-animation-duration: 2s; color: #06D6A0;"></i> Contact
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </nav>
 
   <!-- Home Section -->
-  <div id="home">
+  <div id="home" class="pt-5">
     <!-- Video Section -->
-    <div class="video-container">
-      <video autoplay muted loop id="feature-video">
-        <source src="video/vid.mp4" type="video/mp4">
-      </video>
-      <div class="video-overlay">
-        <h1>Welcome to Opti Style</h1>
+    <div class="container-fluid mt-5 pt-5">
+      <div class="video-container">
+        <video autoplay muted loop id="feature-video">
+          <source src="video/vid.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay">
+          <h1>Welcome to Opti Style</h1>
+        </div>
       </div>
     </div>
+    
     <!-- Cards Section -->
-    <div class="cards-container">
-      <div class="card">
-        <h3>Try All Glasses</h3>
-        <p>Explore our complete collection of frames and virtually try them on using your camera</p>
-        <button class="card-btn" id="try-glasses-btn">Start Exploring</button>
-      </div>
-      <div class="card">
-        <h3>Face Shape Analysis</h3>
-        <p>AI-powered frame recommendations tailored to your face shape</p>
-        <button class="card-btn" id="analyze-btn">Analyze Now</button>
-      </div>
-      <div class="card">
-        <h3>View by Face Shape</h3>
-        <p>Select your face shape to see our curated collection of recommended frames</p>
-        <button class="card-btn" id="browse-btn">Browse</button>
+    <div class="container py-5">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card-custom">
+            <h3>Try All Glasses</h3>
+            <p>Explore our complete collection of frames and virtually try them on using your camera</p>
+            <button class="card-btn" id="try-glasses-btn">Start Exploring</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-custom">
+            <h3>Face Shape Analysis</h3>
+            <p>AI-powered frame recommendations tailored to your face shape</p>
+            <button class="card-btn" id="analyze-btn">Analyze Now</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-custom">
+            <h3>View by Face Shape</h3>
+            <p>Select your face shape to see our curated collection of recommended frames</p>
+            <button class="card-btn" id="browse-btn">Browse</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Glasses Gallery Section -->
-  <section id="glasses-gallery">
-    <div class="gallery-header">
-      <a href="#" class="back-to-shapes" id="back-to-shapes-btn">
-        <i class="fas fa-arrow-left"></i> Back to Face Shapes
-      </a>
-      <h2 id="gallery-title">Our Glasses Collection</h2>
-      <p>Select any frame to try it on virtually</p>
-    </div>
-    <div class="glasses-container" id="glasses-grid">
-      <!-- Glasses cards will be inserted here by JavaScript -->
+  <section id="glasses-gallery" class="section-content d-none">
+    <div class="container">
+      <div class="gallery-header">
+        <a href="#" class="back-to-shapes" id="back-to-shapes-btn">
+          <i class="fas fa-arrow-left"></i> Back to Face Shapes
+        </a>
+        <h2 id="gallery-title">Our Glasses Collection</h2>
+        <p>Select any frame to try it on virtually</p>
+      </div>
+      <div class="row g-4" id="glasses-grid">
+        <!-- Glasses cards will be inserted here by JavaScript -->
+      </div>
     </div>
   </section>
 
   <!-- Face Shapes Section -->
-  <section id="face-shapes-section">
-    <div class="gallery-header">
-      <h2>Select Your Face Shape</h2>
-      <p>Choose your face shape to see recommended frames</p>
-    </div>
-    <div class="face-shapes-container" id="face-shapes-grid">
-      <!-- Face shape cards will be inserted here by JavaScript -->
+  <section id="face-shapes-section" class="section-content d-none">
+    <div class="container">
+      <div class="gallery-header">
+        <h2>Select Your Face Shape</h2>
+        <p>Choose your face shape to see recommended frames</p>
+      </div>
+      <div class="row g-4" id="face-shapes-grid">
+        <!-- Face shape cards will be inserted here by JavaScript -->
+      </div>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about-section">
-    <h2>About Opti Style</h2>
-    <p>Opti Style revolutionizes how you find your perfect glasses. Our advanced facial recognition technology analyzes
-      over 100 facial features to determine your unique face shape.</p>
-    <p>Based on scientific research in facial aesthetics and eyewear design, we recommend frames that complement your
-      face shape, enhance your features, and match your personal style.</p>
-    <p>Whether you're looking for everyday glasses, sunglasses, or special occasion frames, Opti Style helps you make
-      confident choices with virtual try-on technology.</p>
-  </section>
-
-   <!-- Contact Section -->
-  <section id="contact-section">
-    <h2>Contact Us</h2>
-    <div class="contact-info">
-      <div class="contact-item">
-        <i class="fab fa-instagram contact-icon"></i>
-        <span>_codcity_</span>
-
-      </div>
-      <div class="contact-item">
-        <i class="fas fa-phone contact-icon"></i>
-        <span>+972 59-497-8548</span>
-      </div>
-      <div class="contact-item">
-        <i class="fas fa-envelope contact-icon"></i>
-        <span>ansamislam57@gmail.com</span>
-      </div>
-      
+  <section id="about-section" class="section-content d-none">
+    <div class="container">
+      <h2>About Opti Style</h2>
+      <p>Opti Style revolutionizes how you find your perfect glasses. Our advanced facial recognition technology analyzes
+        over 100 facial features to determine your unique face shape.</p>
+      <p>Based on scientific research in facial aesthetics and eyewear design, we recommend frames that complement your
+        face shape, enhance your features, and match your personal style.</p>
+      <p>Whether you're looking for everyday glasses, sunglasses, or special occasion frames, Opti Style helps you make
+        confident choices with virtual try-on technology.</p>
     </div>
   </section>
 
+  <!-- Contact Section -->
+  <section id="contact-section" class="section-content d-none">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fab fa-instagram contact-icon"></i>
+          <span>_codcity_</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone contact-icon"></i>
+          <span>+972 59-497-8548</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope contact-icon"></i>
+          <span>ansamislam57@gmail.com</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
-    <script src="scripts.js"></script>
-  
+  <script>
+    // البيانات
+    const glassesList = [
+      { 'name': 'Aviator', 'mainImage': 'images/aviator.png', 'additionalImages': ['images/Av1.png', 'images/Av2.png'], 'url': 'https://8m927.zappar.io/8576652900376330933/1.0.6/' },
+      { 'name': 'Wayfarer', 'mainImage': 'images/warfarer.png', 'additionalImages': ['images/Wa1.png', 'images/Wa2.png'], 'url': 'https://8m927.zappar.io/270444070075388133/1.0.2/' },
+      { 'name': 'Browline', 'mainImage': 'images/browline.png', 'additionalImages': ['images/Br1.png', 'images/Br2.png'], 'url': 'https://8m927.zappar.io/7848710460982949928/1.0.2/' },
+      { 'name': 'Geometric', 'mainImage': 'images/geometric.png', 'additionalImages': ['images/Go1.png', 'images/Go2.png'], 'url': 'https://8m927.zappar.io/6782183001895966014/1.0.3/' },
+      { 'name': 'Cat Eye', 'mainImage': 'images/cateye.png', 'additionalImages': ['images/Ca1.png', 'images/Ca2.png'], 'url': 'https://8m927.zappar.io/5579294278545221962/1.0.3/' },
+      { 'name': 'Rectangle', 'mainImage': 'images/rectangle.png', 'additionalImages': ['images/Re1.png', 'images/Re2.png'], 'url': 'https://8m927.zappar.io/3806282430033659633/1.0.2/' },
+      { 'name': 'Square', 'mainImage': 'images/square.png', 'additionalImages': ['images/Sq1.png', 'images/Sq2.png'], 'url': 'https://8m927.zappar.io/1494221415688502733/1.0.2/' },
+      { 'name': 'Round', 'mainImage': 'images/round.png', 'additionalImages': ['images/Ro1.png', 'images/Ro2.png'], 'url': 'https://8m927.zappar.io/2810764190350714028/1.0.1/' },
+      { 'name': 'Oval', 'mainImage': 'images/oval.png', 'additionalImages': ['images/Ov1.png', 'images/Ov2.png'], 'url': 'https://8m927.zappar.io/6323650033745908436/1.0.2/' }
+    ];
+
+    const faceGlassesMapping = {
+      'oval': glassesList,
+      'heart': glassesList.filter(g => ['Cat Eye', 'Rectangle', 'Wayfarer', 'Browline', 'Oval'].includes(g.name)),
+      'round': glassesList.filter(g => ['Aviator', 'Geometric', 'Rectangle', 'Square'].includes(g.name)),
+      'square': glassesList.filter(g => ['Aviator', 'Wayfarer', 'Browline', 'Round', 'Oval', 'Cat Eye'].includes(g.name)),
+      'oblong': glassesList.filter(g => ['Aviator', 'Wayfarer', 'Browline', 'Round', 'Oval', 'Geometric'].includes(g.name))
+    };
+
+    const faceShapeNames = {
+      'oval': 'Oval Face',
+      'heart': 'Heart Face',
+      'round': 'Round Face',
+      'square': 'Square Face',
+      'oblong': 'Oblong Face'
+    };
+
+    // وظائف العرض
+    function renderGlasses() {
+      const container = $('#glasses-grid');
+      container.empty();
+      
+      glassesList.forEach((glasses, index) => {
+        let slidesHTML = `<div class="glasses-slide"><img src="${glasses.mainImage}" alt="${glasses.name}"></div>`;
+        glasses.additionalImages.forEach(img => {
+          slidesHTML += `<div class="glasses-slide"><img src="${img}" alt="${glasses.name}"></div>`;
+        });
+        
+        const cardHTML = `
+          <div class="col-md-4">
+            <div class="glasses-card">
+              <div class="glasses-slider" id="slider-${index}">
+                <div class="glasses-slides">${slidesHTML}</div>
+                <div class="slider-arrow prev" onclick="moveSlide(${index}, -1)"><i class="fas fa-chevron-left"></i></div>
+                <div class="slider-arrow next" onclick="moveSlide(${index}, 1)"><i class="fas fa-chevron-right"></i></div>
+                <div class="slider-controls" id="controls-${index}"></div>
+              </div>
+              <div class="glasses-info">
+                <h3>${glasses.name}</h3>
+                <button class="glasses-btn" onclick="window.open('${glasses.url}', '_blank')">Try On</button>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        container.append(cardHTML);
+        initSlider(index, glasses.additionalImages.length + 1);
+      });
+    }
+
+    function renderGlassesForFaceShape(faceShape) {
+      const glasses = faceGlassesMapping[faceShape];
+      const container = $('#glasses-grid');
+      container.empty();
+      
+      glasses.forEach((glasses, index) => {
+        let slidesHTML = `<div class="glasses-slide"><img src="${glasses.mainImage}" alt="${glasses.name}"></div>`;
+        glasses.additionalImages.forEach(img => {
+          slidesHTML += `<div class="glasses-slide"><img src="${img}" alt="${glasses.name}"></div>`;
+        });
+        
+        const cardHTML = `
+          <div class="col-md-4">
+            <div class="glasses-card">
+              <div class="glasses-slider" id="slider-${index}">
+                <div class="glasses-slides">${slidesHTML}</div>
+                <div class="slider-arrow prev" onclick="moveSlide(${index}, -1)"><i class="fas fa-chevron-left"></i></div>
+                <div class="slider-arrow next" onclick="moveSlide(${index}, 1)"><i class="fas fa-chevron-right"></i></div>
+                <div class="slider-controls" id="controls-${index}"></div>
+              </div>
+              <div class="glasses-info">
+                <h3>${glasses.name}</h3>
+                <button class="glasses-btn" onclick="window.open('${glasses.url}', '_blank')">Try On</button>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        container.append(cardHTML);
+        initSlider(index, glasses.additionalImages.length + 1);
+      });
+    }
+
+    function renderFaceShapes() {
+      const container = $('#face-shapes-grid');
+      container.empty();
+      
+      const faceShapes = [
+        { name: 'Heart', image: 'images/heart-face.png', type: 'heart' },
+        { name: 'Oblong', image: 'images/oblong-face.png', type: 'oblong' },
+        { name: 'Oval', image: 'images/oval-face.png', type: 'oval' },
+        { name: 'Round', image: 'images/round-face.png', type: 'round' },
+        { name: 'Square', image: 'images/square-face.png', type: 'square' }
+      ];
+      
+      faceShapes.forEach(shape => {
+        const cardHTML = `
+          <div class="col-md-4">
+            <div class="face-shape-card">
+              <img src="${shape.image}" alt="${shape.name}" class="face-shape-image">
+              <div class="face-shape-info">
+                <h3>${shape.name}</h3>
+                <button class="face-shape-btn" onclick="showGlassesForFaceShape('${shape.type}')">View Glasses</button>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        container.append(cardHTML);
+      });
+    }
+
+    function showGlassesForFaceShape(faceShape) {
+      $('#face-shapes-section').addClass('d-none');
+      $('#glasses-gallery').removeClass('d-none');
+      $('#gallery-title').text(`${faceShapeNames[faceShape]} Glasses`);
+      $('#back-to-shapes-btn').show();
+      renderGlassesForFaceShape(faceShape);
+      window.scrollTo(0, 0);
+    }
+
+    // وظائف السلايدر
+    function initSlider(index, totalSlides) {
+      const controls = $(`#controls-${index}`);
+      controls.empty();
+      
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = $(`<div class="slider-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>`);
+        dot.on('click', () => goToSlide(index, i));
+        controls.append(dot);
+      }
+    }
+
+    function moveSlide(index, direction) {
+      const slider = $(`#slider-${index}`);
+      const slides = slider.find('.glasses-slides');
+      const totalSlides = slides.children().length;
+      let currentIndex = parseInt(slider.data('current') || 0);
+      currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+      updateSlider(index, currentIndex);
+    }
+
+    function goToSlide(index, slideIndex) {
+      updateSlider(index, slideIndex);
+    }
+
+    function updateSlider(index, slideIndex) {
+      const slider = $(`#slider-${index}`);
+      const slides = slider.find('.glasses-slides');
+      const dots = slider.find('.slider-dot');
+      
+      slides.css('transform', `translateX(-${slideIndex * 100}%)`);
+      slider.data('current', slideIndex);
+      
+      dots.each(function(i) {
+        $(this).toggleClass('active', i === slideIndex);
+      });
+    }
+
+    // التنقل بين الأقسام
+    $(document).ready(function() {
+      // التنقل
+      $('.nav-link').on('click', function(e) {
+        e.preventDefault();
+        const target = $(this).data('target');
+        
+        // إخفاء جميع الأقسام
+        $('#home, #glasses-gallery, #face-shapes-section, #about-section, #contact-section').addClass('d-none');
+        
+        // إظهار القسم المطلوب
+        if (target === 'home') {
+          $('#home').removeClass('d-none');
+        } else {
+          $(`#${target}-section`).removeClass('d-none');
+        }
+        
+        // التمرير إلى الأعلى
+        window.scrollTo(0, 0);
+      });
+      
+      // أحداث الأزرار
+      $('#try-glasses-btn').on('click', function() {
+        $('#home').addClass('d-none');
+        $('#glasses-gallery').removeClass('d-none');
+        $('#face-shapes-section').addClass('d-none');
+        $('#gallery-title').text('All Glasses Collection');
+        $('#back-to-shapes-btn').hide();
+        renderGlasses();
+        window.scrollTo(0, 0);
+      });
+      
+      $('#analyze-btn').on('click', function() {
+        window.location.href = 'face-shape.html';
+      });
+      
+      $('#browse-btn').on('click', function() {
+        $('#home').addClass('d-none');
+        $('#glasses-gallery').addClass('d-none');
+        $('#face-shapes-section').removeClass('d-none');
+        renderFaceShapes();
+        window.scrollTo(0, 0);
+      });
+      
+      $('#back-to-shapes-btn').on('click', function(e) {
+        e.preventDefault();
+        $('#glasses-gallery').addClass('d-none');
+        $('#face-shapes-section').removeClass('d-none');
+        window.scrollTo(0, 0);
+      });
+      
+      // تهيئة الصفحة بناءً على الهاش
+      const hash = window.location.hash.substring(1);
+      
+      if (hash === 'about') {
+        $('#about-section').removeClass('d-none');
+        $('#home').addClass('d-none');
+      } else if (hash === 'contact') {
+        $('#contact-section').removeClass('d-none');
+        $('#home').addClass('d-none');
+      }
+    });
+
+    // جعل الدوال متاحة عالمياً
+    window.moveSlide = moveSlide;
+    window.goToSlide = goToSlide;
+    window.showGlassesForFaceShape = showGlassesForFaceShape;
+  </script>
 </body>
 
 </html>
-
